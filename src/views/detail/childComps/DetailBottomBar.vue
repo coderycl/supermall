@@ -34,12 +34,9 @@
 
 <style scoped>
   .bottom-bar {
-    height: 58px;
-    position: fixed;
+    height: 49px;
+    position: relative;
     background-color: #fff;
-    left: 0;
-    right: 0;
-    bottom: 0;
 
     display: flex;
     text-align: center;
@@ -77,7 +74,7 @@
   .bar-right {
     font-size: 15px;
     color: #fff;
-    line-height: 58px;
+    line-height: 49px;
   }
 
   .bar-right .cart {

@@ -1,15 +1,20 @@
 <template>
   <div v-if="Object.keys(detailInfo).length !== 0" class="goods-info">
+
     <div class="info-desc clear-fix">
       <div class="start">
       </div>
       <div class="desc">{{detailInfo.desc}}</div>
       <div class="end"></div>
     </div>
-    <div class="info-key">{{detailInfo.detailImage[0].key}}</div>
-    <div class="info-list">
-      <img v-for="(item, index) in detailInfo.detailImage[0].list" :src="item" alt="">
+
+    <div v-for="item in detailInfo.detailImage">
+      <div class="info-key">{{item.key}}</div>
+      <div class="info-list">
+        <img v-for="(item, index) in item.list" :src="item" :key="index" @load="imageLoad" alt="">
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -19,6 +24,11 @@
     props: {
       detailInfo: {
         type: Object
+      }
+    },
+    methods: {
+      imageLoad() {
+        this.$emit('detailImageLoad')
       }
     }
 	}

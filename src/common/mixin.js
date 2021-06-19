@@ -4,32 +4,33 @@ import {debouce} from './utils';
 export const itemListenerMixin = {
   data() {
     return {
-      itemImgListenter: null
+      itemImgListenter: null,
+      refresh: null
     }
   },
   mounted() {
-    let refresh =  debouce(this.$refs.scroll.refresh, 100)
+    this.refresh =  debouce(this.$refs.scroll.refresh, 100)
 
     this.itemImgListenter = () => {
-      refresh()
+      this.refresh()
     }
 
-    this.$bus.$on('itemImgLoad', this.itemImgListenter)
+    this.$bus.$on('itemImageLoad', this.itemImgListenter)
   }
 }
 
-// export const backTopMixin = {
-//   data: function () {
-//     return {
-//       showBackTop: false
-//     }
-//   },
-//   methods: {
-//     backTop: function () {
-//       this.$refs.scroll.scrollTo(0, 0, 300);
-//     }
-//   }
-// }
+export const backTopMixin = {
+  data: function () {
+    return {
+      isShowBackTop: false
+    }
+  },
+  methods: {
+    btnClick: function () {
+      this.$refs.scroll.scrollTo(0, 0, 300);
+    }
+  }
+}
 
 // export const tabControlMixin = {
 //   data: function () {

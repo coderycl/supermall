@@ -39,7 +39,7 @@
 
   import {getHomeMultidata, getHomeGoods} from 'network/home'
   import {debouce} from 'common/utils'
-  import {itemListenerMixin} from 'common/mixin'
+  import {itemListenerMixin, backTopMixin} from 'common/mixin'
 
   export default {
     name: 'Home',
@@ -69,7 +69,7 @@
         saveY: 0
       }
     },
-    mixins: [itemListenerMixin],
+    mixins: [itemListenerMixin, backTopMixin],
     computed: {
       showGoods() {
         return this.goods[this.currentType].list
@@ -121,9 +121,6 @@
         }
         this.$refs.tabControl1.currentIndex = index;
         this.$refs.tabControl2.currentIndex = index;
-      },
-      btnClick() {
-        this.$refs.scroll.scrollTo(0, 0, 500)
       },
       contentScroll(position) {
         //判断backtop是否显示
